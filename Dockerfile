@@ -36,4 +36,4 @@ RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/dow
 ENV PATH="${PATH}:/tmp/amazon-corretto-15.0.2.7.1-linux-x64/bin"
 ENV JAVA_HOME=/tmp/amazon-corretto-15.0.2.7.1-linux-x64
 
-USER jenkins
+## USER jenkins
