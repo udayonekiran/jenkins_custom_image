@@ -8,7 +8,7 @@ RUN apt-get update && \
     pip3 install awscli && \
     rm -rf /var/lib/apt/lists/*
     
-RUN apt-get install -y jq java-common libxml2-utils unzip zip curl wget && apt-get clean && apt-get autoclean && apt-get autoremove
+RUN apt-get install -y jq java-common libxml2-utils unzip zip curl wget git && apt-get clean && apt-get autoclean && apt-get autoremove
 
 # Install JDK Corretto
 RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/15.0.2.7.1/amazon-corretto-15.0.2.7.1-linux-x64.tar.gz && \
