@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get install -y python3-pip && \
     pip3 install awscli
     
-RUN apt-get update && apt-get install -y java-common libxml2-utils unzip zip curl git && apt-get clean && apt-get autoclean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y java-common libxml2-utils unzip zip curl git docker-ce docker-ce-cli containerd.io docker-compose-plugin && apt-get clean && apt-get autoclean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # Install JDK Corretto
 RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/15.0.2.7.1/amazon-corretto-15.0.2.7.1-linux-x64.tar.gz && \
