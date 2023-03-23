@@ -20,6 +20,7 @@ RUN echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+RUN apt-get install docker.io -y
 RUN apt-get clean && apt-get autoclean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # Install JDK Corretto
@@ -29,4 +30,4 @@ RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/dow
 ENV PATH="${PATH}:/tmp/amazon-corretto-15.0.2.7.1-linux-x64/bin"
 ENV JAVA_HOME=/tmp/amazon-corretto-15.0.2.7.1-linux-x64
 
-USER jenkins
+## USER jenkins
