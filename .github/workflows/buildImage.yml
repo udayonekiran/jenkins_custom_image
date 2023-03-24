@@ -6,7 +6,7 @@ name: Docker Image Build
 on:
   push:
     branches:
-      - 'ukreddy*'
+      - 'testdelete'
       - 'main'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -48,5 +48,5 @@ jobs:
         run: echo ${SHORT_SHA}
       - name: Build and push jenkins image
         run: |
-          docker build . -t uday1kiran/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
-          docker push uday1kiran/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
+          docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
