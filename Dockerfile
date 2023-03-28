@@ -16,7 +16,7 @@ RUN apt-get install -y \
     lsb-release
 
 # Install custom plugins
-RUN jenkins-plugin-cli --plugins "kubernetes:3900.va_dce992317b_4 aws-credentials.version:191.vcb_f183ce58b_9"
+RUN jenkins-plugin-cli --plugins "kubernetes aws-credentials"
 
 RUN mkdir -m 0755 -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
