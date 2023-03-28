@@ -14,6 +14,10 @@ RUN apt-get install -y \
     curl \
     gnupg \
     lsb-release
+
+# Install custom plugins
+RUN jenkins-plugin-cli --plugins "kubernetes:3900.va_dce992317b_4 aws-credentials.version:191.vcb_f183ce58b_9"
+
 RUN mkdir -m 0755 -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 RUN echo \
@@ -27,7 +31,11 @@ RUN apt-get clean && apt-get autoclean && apt-get autoremove && rm -rf /var/lib/
 RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/15.0.2.7.1/amazon-corretto-15.0.2.7.1-linux-x64.tar.gz && \
     tar -xvzf amazon-corretto-15.0.2.7.1-linux-x64.tar.gz -C /tmp
 
+
+
+
 ENV PATH="${PATH}:/tmp/amazon-corretto-15.0.2.7.1-linux-x64/bin"
 ENV JAVA_HOME=/tmp/amazon-corretto-15.0.2.7.1-linux-x64
+
 
 ## USER jenkins
