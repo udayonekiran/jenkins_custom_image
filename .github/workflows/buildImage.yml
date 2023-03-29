@@ -50,3 +50,7 @@ jobs:
         run: |
           docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_image:${BRANCH_NAME}-${SHORT_SHA}
+      - name: Build and push jenkins agent image
+        run: |
+          docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_agent:${BRANCH_NAME}-${SHORT_SHA} -f Dockerfile_agent
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_agent:${BRANCH_NAME}-${SHORT_SHA}
