@@ -52,5 +52,5 @@ jobs:
           files: OpenJDK8U-jdk_x64_linux_hotspot_8u362b09.tar.gz
       - name: Build and push CentOS image
         run: |
-          docker build . -t vsumanth/centos:${BRANCH_NAME}-${SHORT_SHA} -f Dockerfile_centos_empty
+          docker build . -t vsumanth/centos:${BRANCH_NAME}-${SHORT_SHA} -f Dockerfile_agent
           docker push vsumanth/centos:${BRANCH_NAME}-${SHORT_SHA}
