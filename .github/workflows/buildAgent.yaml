@@ -1,19 +1,13 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Docker agent Image Build
+name: Docker CentOS Image Build
 
 on:
   push:
     branches:
-      - 'testdelete'
       - 'main'
+      - 'te*'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
       
-#env:
-#  container_registry: 'qusw-pop-erwin-mart-docker-prod-local.jfrog.io/erwin' #'acrewnmrtshareddevwestus2.azurecr.io' #'martcloud.azurecr.io' #'martserverlinux.azurecr.io'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,7 +40,17 @@ jobs:
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`" >> $GITHUB_ENV
       - name: My step
         run: echo ${SHORT_SHA}
-      - name: Build and push jenkins agent image
+      - name: Download Dependencies
         run: |
-          docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_agent:${BRANCH_NAME}-${SHORT_SHA} -f Dockerfile_agent
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkins_custom_agent:${BRANCH_NAME}-${SHORT_SHA}
+          curl -o OpenJDK8U-jdk_x64_linux_hotspot_8u362b09.tar.gz https://corretto.aws/downloads/resources/15.0.2.7.1/amazon-corretto-15.0.2.7.1-linux-x64.tar.gz
+          sleep 5s
+      - name: Extract JDK
+        uses: a7ul/tar-action@v1.1.0
+        id: extract1
+        with:
+          command: x
+          files: OpenJDK8U-jdk_x64_linux_hotspot_8u362b09.tar.gz
+      - name: Build and push CentOS image
+        run: |
+          docker build . -t vsumanth/centos:${BRANCH_NAME}-${SHORT_SHA} -f Dockerfile_centos_empty
+          docker push vsumanth/centos:${BRANCH_NAME}-${SHORT_SHA}
