@@ -10,7 +10,7 @@ RUN  yum update -y && \
      yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
      yum update -y && \
      yum install -y \
-     vim nano python3 zip unzip \
+     vim nano python3 zip unzip curl \
      docker-ce \
      docker-ce-cli \
      containerd.io \
