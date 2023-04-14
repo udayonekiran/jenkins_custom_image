@@ -31,8 +31,10 @@ RUN apt-get clean && apt-get autoclean && apt-get autoremove && rm -rf /var/lib/
 RUN curl -o amazon-corretto-15.0.2.7.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/15.0.2.7.1/amazon-corretto-15.0.2.7.1-linux-x64.tar.gz && \
     tar -xvzf amazon-corretto-15.0.2.7.1-linux-x64.tar.gz -C /tmp
 
-
-
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm awscliv2.zip
 
 ENV PATH="${PATH}:/tmp/amazon-corretto-15.0.2.7.1-linux-x64/bin"
 ENV JAVA_HOME=/tmp/amazon-corretto-15.0.2.7.1-linux-x64
